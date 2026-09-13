@@ -1,47 +1,72 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Feliz 39 Cumpleaños!</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Carga de tipografía bonita desde Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <!-- Librería de confeti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
+
 <body>
-    <main class="container">
-        <div class="card">
-            <span class="badge">✨ 39 Años ✨</span>
-            <h1>¡Feliz Cumpleaños! ❤️</h1>
-            <p class="subtitle">Una pequeña sorpresa para un día muy especial</p>
+    <!-- Fondo decorativo con elementos flotantes -->
+    <div class="bg-decoration">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+    </div>
 
-            <div class="photo-wrapper">
-                <img src="foto.jpg" alt="Foto especial" id="main-photo">
+    <main class="wrapper">
+        <!-- PANTALLA INICIAL / QUIZ -->
+        <div id="quiz-screen" class="card fade-in">
+            <span class="badge">🎂 Especial 39º Cumpleaños</span>
+            <h1>¿Estarás lista para tu premio? ❤️</h1>
+            <p class="subtitle">Supera las preguntas para desbloquear tu sorpresa de cumpleaños.</p>
+
+            <!-- Barra de progreso -->
+            <div class="progress-bar">
+                <div id="progress" class="progress-fill" style="width: 33%;"></div>
             </div>
 
-            <div class="message-box">
-                <p>¡Muchas felicidades por tus 39! Que este nuevo año esté lleno de momentos inolvidables, muchas risas y proyectos increíbles juntos.</p>
+            <!-- Pregunta actual -->
+            <div id="question-box" class="question-container">
+                <h2 id="question-text">Pregunta 1</h2>
+                <div id="options-container" class="options-grid">
+                    <!-- Opciones generadas por JavaScript -->
+                </div>
+                <p id="error-message" class="error-msg hidden">❌ ¡Casi! Inténtalo de nuevo 😉</p>
+            </div>
+        </div>
+
+        <!-- PANTALLA FINAL (RECOMPENSA DE REGALO) -->
+        <div id="reward-screen" class="card fade-in hidden">
+            <span class="badge badge-success">🎉 ¡Desbloqueado!</span>
+            <h1>¡Muchas Felicidades! ❤️</h1>
+            <p class="subtitle">Has superado el test. Aquí tienes tu regalo especial:</p>
+
+            <!-- Contenedor Responsive para el Vídeo de YouTube -->
+            <div class="video-container">
+                <!-- Sustituye ID_DE_TU_VIDEO por el código final del enlace de YouTube -->
+                <iframe 
+                    src="https://www.youtube.com/embed/CnQ8N1KacJc?rel=0&autoplay=1" 
+                    title="Vídeo de Cumpleaños"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
             </div>
 
-            <!-- Botón de animación -->
-            <button id="celebrate-btn" class="btn-primary">🎉 ¡Celébralo aquí!</button>
-
-            <!-- Sección de sorpresas u itinerario -->
-            <div class="timeline">
-                <h3>El plan de hoy</h3>
-                <ul>
-                    <li><span>1.</span> 🎁 Una sorpresa matutina</li>
-                    <li><span>2.</span> 🍷 Cena especial</li>
-                    <li><span>3.</span> 🥂 Brindis por tus 39</li>
-                </ul>
+            <div class="final-message">
+                <p>¡Felices 39! Que disfrutes de tu día y de todo lo que te espera este año. 🥂✨</p>
             </div>
         </div>
     </main>
 
     <script src="script.js"></script>
 </body>
+
 </html>

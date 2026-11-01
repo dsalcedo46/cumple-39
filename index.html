@@ -93,13 +93,18 @@
             <div id="video-container" class="video-scale">
                 <div class="video-wrapper">
                     <iframe
-                        src="https://www.youtube.com/embed/CnQ8N1KacJc?rel=0&autoplay=1"
+                        id="video-iframe"
+                        src=""
+                        data-src="https://www.youtube.com/embed/CnQ8N1KacJc?rel=0&autoplay=1"
                         title="Vídeo de Cumpleaños"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                     </iframe>
                 </div>
+                <a id="video-link" href="https://www.youtube.com/watch?v=CnQ8N1KacJc" target="_blank" rel="noopener noreferrer" class="video-fallback-link hidden">
+                    🎬 Si no se reproduce, haz click aquí para ver el vídeo
+                </a>
             </div>
 
             <div id="final-message" class="final-message-box fade-up">
@@ -124,6 +129,3 @@
 </body>
 
 </html>
-
-
-

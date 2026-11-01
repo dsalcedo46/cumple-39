@@ -194,6 +194,28 @@ function showReward() {
 
     setTimeout(() => {
         videoContainer.classList.add('show');
+
+        // Cargar el iframe de YouTube
+        const videoIframe = document.getElementById('video-iframe');
+        const videoLink = document.getElementById('video-link');
+
+        if (videoIframe) {
+            const videoSrc = videoIframe.getAttribute('data-src');
+            videoIframe.src = videoSrc;
+
+            // Detectar si el iframe no carga (bloqueado por seguridad local)
+            let iframeLoaded = false;
+            videoIframe.addEventListener('load', () => {
+                iframeLoaded = true;
+            });
+
+            // Después de 3 segundos, si no cargó, mostrar enlace alternativo
+            setTimeout(() => {
+                if (!iframeLoaded) {
+                    videoLink.classList.remove('hidden');
+                }
+            }, 3000);
+        }
     }, 400);
 
     setTimeout(() => {
@@ -246,4 +268,3 @@ function showReward() {
         }, 800);
     }, 500);
 }
-

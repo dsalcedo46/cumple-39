@@ -4,64 +4,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz 39 Cumpleaños!</title>
+    <title>¡Feliz 39 Cumpleaños! 🎂❤️</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <!-- Librería de confeti -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 
 <body>
-    <!-- Fondo decorativo con elementos flotantes -->
     <div class="bg-decoration">
-        <div class="glow glow-1"></div>
-        <div class="glow glow-2"></div>
+        <div class="glow-orb glow-1"></div>
+        <div class="glow-orb glow-2"></div>
+        <div class="glow-orb glow-3"></div>
     </div>
 
+    <div id="floating-hearts"></div>
+
     <main class="wrapper">
-        <!-- PANTALLA INICIAL / QUIZ -->
-        <div id="quiz-screen" class="card fade-in">
-            <span class="badge">🎂 Especial 39º Cumpleaños</span>
-            <h1>¿Estarás lista para tu premio? ❤️</h1>
-            <p class="subtitle">Supera las preguntas para desbloquear tu sorpresa de cumpleaños.</p>
-
-            <!-- Barra de progreso -->
-            <div class="progress-bar">
-                <div id="progress" class="progress-fill" style="width: 33%;"></div>
-            </div>
-
-            <!-- Pregunta actual -->
-            <div id="question-box" class="question-container">
-                <h2 id="question-text">Pregunta 1</h2>
-                <div id="options-container" class="options-grid">
-                    <!-- Opciones generadas por JavaScript -->
-                </div>
-                <p id="error-message" class="error-msg hidden">❌ ¡Casi! Inténtalo de nuevo 😉</p>
+        <!-- PANTALLA DE BIENVENIDA -->
+        <div id="welcome-screen" class="card glass-strong fade-in-up">
+            <div class="welcome-emoji bounce-in">💌</div>
+            <span class="badge slide-down" style="animation-delay: 0.4s">🎂 Especial 39º Cumpleaños</span>
+            <h1 class="fade-up" style="animation-delay: 0.6s">
+                ¡Tengo algo <span class="gradient-text">especial para ti</span>! ❤️
+            </h1>
+            <p class="subtitle fade-up" style="animation-delay: 0.8s">
+                He preparado un pequeño juego para ti. Supera las preguntas y desbloquea tu regalo de cumpleaños. ¿Estás lista?
+            </p>
+            <button id="btn-start" class="btn-primary pulse-glow fade-up" style="animation-delay: 1s">
+                <span>Empezar el juego 🎁</span>
+            </button>
+            <div class="welcome-footer fade-in" style="animation-delay: 1.2s">
+                <span>✨</span>
+                <span>3 preguntas te separan de tu sorpresa</span>
+                <span>✨</span>
             </div>
         </div>
 
-        <!-- PANTALLA FINAL (RECOMPENSA DE REGALO) -->
-        <div id="reward-screen" class="card fade-in hidden">
-            <span class="badge badge-success">🎉 ¡Desbloqueado!</span>
-            <h1>¡Muchas Felicidades! ❤️</h1>
-            <p class="subtitle">Has superado el test. Aquí tienes tu regalo especial:</p>
-
-            <!-- Contenedor Responsive para el Vídeo de YouTube -->
-            <div class="video-container">
-                <!-- Sustituye ID_DE_TU_VIDEO por el código final del enlace de YouTube -->
-                <iframe 
-                    src="https://www.youtube.com/embed/CnQ8N1KacJc?rel=0&autoplay=1" 
-                    title="Vídeo de Cumpleaños"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+        <!-- PANTALLA DE QUIZ -->
+        <div id="quiz-screen" class="card glass-strong hidden">
+            <div class="quiz-header">
+                <span id="question-badge" class="badge badge-quiz">Pregunta 1 de 3</span>
+                <div class="progress-track">
+                    <div id="progress" class="progress-bar-fill" style="width: 33%"></div>
+                </div>
             </div>
 
-            <div class="final-message">
-                <p>¡Felices 39! Que disfrutes de tu día y de todo lo que te espera este año. 🥂✨</p>
+            <div id="question-box" class="question-container slide-in-right">
+                <h2 id="question-text" class="question-title">Pregunta 1</h2>
+                <div id="options-container" class="options-grid"></div>
+                <p id="error-message" class="error-msg hidden">❌ ¡Casi! Inténtalo de nuevo 😉</p>
+            </div>
+
+            <div class="quiz-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <!-- PANTALLA DE COUNTDOWN -->
+        <div id="countdown-screen" class="card glass-strong hidden">
+            <div class="countdown-icon scale-in">🔓</div>
+            <p class="countdown-text fade-in">¡Desbloqueando tu regalo...!</p>
+            <div class="countdown-number-container">
+                <span id="countdown-num" class="countdown-number">3</span>
+            </div>
+            <div id="countdown-dots" class="countdown-dots">
+                <span class="cd-dot"></span>
+                <span class="cd-dot"></span>
+                <span class="cd-dot"></span>
+            </div>
+        </div>
+
+        <!-- PANTALLA DE RECOMPENSA -->
+        <div id="reward-screen" class="card glass-strong hidden">
+            <div class="reward-badge-container bounce-in" style="animation-delay: 0.2s">
+                <span class="badge badge-success">🎉 ¡Desbloqueado!</span>
+            </div>
+            <h1 id="reward-title" class="reward-title fade-up">
+                <span class="gradient-text-big">¡Muchas Felicidades!</span> ❤️
+            </h1>
+            <p id="reward-subtitle" class="subtitle fade-up" style="animation-delay: 0.3s">
+                Has superado el test. Aquí tienes tu regalo especial:
+            </p>
+
+            <div id="video-container" class="video-scale">
+                <div class="video-wrapper">
+                    <iframe
+                        id="video-iframe"
+                        src=""
+                        data-src="https://www.youtube.com/embed/CnQ8N1KacJc?rel=0&autoplay=1"
+                        title="Vídeo de Cumpleaños"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <a id="video-link" href="https://www.youtube.com/watch?v=CnQ8N1KacJc" target="_blank" rel="noopener noreferrer" class="video-fallback-link hidden">
+                    🎬 Si no se reproduce, haz click aquí para ver el vídeo
+                </a>
+            </div>
+
+            <div id="final-message" class="final-message-box fade-up">
+                <p class="final-text">¡Felices 39! 🥂✨</p>
+                <p class="final-subtext">
+                    Que disfrutes de tu día y de todo lo maravilloso que te espera este año.
+                    Te quiero muchísimo. 💕
+                </p>
+            </div>
+
+            <div id="final-emojis" class="final-emojis fade-in" style="animation-delay: 0.5s">
+                <span class="float-emoji" style="animation-delay: 0s">🎂</span>
+                <span class="float-emoji" style="animation-delay: 0.3s">💖</span>
+                <span class="float-emoji" style="animation-delay: 0.6s">🥂</span>
+                <span class="float-emoji" style="animation-delay: 0.9s">✨</span>
+                <span class="float-emoji" style="animation-delay: 1.2s">🎁</span>
             </div>
         </div>
     </main>

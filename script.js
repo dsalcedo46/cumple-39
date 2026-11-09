@@ -1,19 +1,39 @@
 // ===== CONFIGURACIÓN DE PREGUNTAS =====
 const questions = [
     {
-        question: "¿Dónde fue nuestro viaje o momento más divertido juntos?",
-        options: ["En la playa", "En aquella escapada a la montaña", "En aquella cena inolvidable"],
+        question: "¿En qué bar de la noche logroñesa conociste a tu actual marido?",
+        options: ["El Nuevo Café", "El Carpe Diem", "El Brieva"],
         correct: 1
     },
     {
-        question: "¿Qué es lo que más te caracteriza cuando celebras tu cumple?",
-        options: ["Tu sonrisa constante", "Organizarlo todo a la perfección", "Pedir un deseo con ganas"],
+        question: "Ciudad europea donde desapareció el C4 por aparcar en un sitio reservado para coches eléctricos.",
+        options: ["París", "Málaga", "Roma"],
         correct: 0
     },
     {
-        question: "¿Cuántos años cumplimos hoy?",
-        options: ["38 + 1", "39 por todo lo alto", "Las dos anteriores son correctas"],
+        question: "Dos de los días más importantes de tu vida.",
+        options: ["El 23-01-1998 y el 14-06-2005", "El 7-08-2002 y el 5-05-2009", "El 17-08-2017 y el 16-08-2021"],
         correct: 2
+    },
+    {
+        question: "¿Cuál es el superhéroe más guay, molón, vamos, el p... amo?",
+        options: ["Superman", "Iron-Man", "Linterna Verde"],
+        correct: 1
+    },
+    {
+        question: "¿Qué país recorriste en tu viaje de novios con la mejor compañía?",
+        options: ["Tailandia", "Bélgica", "Italia"],
+        correct: 2
+    },
+    {
+        question: "Primer concierto que viste con David.",
+        options: ["El Canto del Loco", "Despistaos", "La Oreja de Van Gogh"],
+        correct: 1
+    },
+    {
+        question: "La refinitiva, estás a un paso de conseguir el premio. ¿Fecha de la mejor boda en la que has estado?",
+        options: ["27-06-2015", "27-06-2015", "27-06-2015"],
+        correct: [0, 1, 2]
     }
 ];
 
@@ -106,7 +126,7 @@ function checkAnswer(selectedIndex, clickedBtn) {
 
     allBtns.forEach(btn => btn.disabled = true);
 
-    if (selectedIndex === q.correct) {
+    if (Array.isArray(q.correct) ? q.correct.includes(selectedIndex) : selectedIndex === q.correct) {
         clickedBtn.classList.add('correct');
         clickedBtn.querySelector('.option-arrow').textContent = '✓';
         isTransitioning = true;
